@@ -54,7 +54,7 @@ Công ty ABC cần xây dựng hệ thống mới để:
 > **Công ty ABC đang gặp khó khăn trong việc quản lý và vận hành dịch vụ đặt xe do quy trình phân công tài xế còn thủ công, khách hàng khó theo dõi chuyến đi, thanh toán chưa được quản lý tập trung và hệ thống khó mở rộng. Vì vậy, công ty cần xây dựng CAB System để tự động hóa quy trình đặt xe, nâng cao hiệu quả vận hành, cải thiện trải nghiệm khách hàng và tạo nền tảng có khả năng mở rộng trong tương lai.**
 > 
 Bước 2 : 2 bảng , 1 bên stackhoder, vai trò
-mục 2 : vẽ ma trận stackgoder meatreat
+mục 2 : vẽ ma trận stackholder meatreat
 tầm ảnh hưởng vai trò
  Stakeholder     
 | STT | Stakeholder                     | Vai trò                                                                      |
@@ -68,5 +68,6 @@ tầm ảnh hưởng vai trò
 | 7   | **Nhà cung cấp thông báo**      | Cung cấp các kênh gửi thông báo cho khách hàng và tài xế                     |
 | 8   | **Business Analyst (BA)**       | Thu thập, phân tích và làm rõ yêu cầu nghiệp vụ                              |
 | 9   | **Đội phát triển hệ thống**     | Thiết kế, xây dựng, kiểm thử và triển khai hệ thống                          |
+
 
 
