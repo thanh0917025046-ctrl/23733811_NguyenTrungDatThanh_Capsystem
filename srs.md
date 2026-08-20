@@ -654,6 +654,33 @@ Bước 13: Những tiêu chí chấp nhận ( những AC : những qui tắc c�
 | **AC10** | **Quản lý vận hành**        | Nhân viên có thể xem chuyến đang diễn ra và xử lý các chuyến gặp sự cố.                                        |
 | **AC11** | **Xem báo cáo**             | Người có quyền có thể xem báo cáo số chuyến, doanh thu, tỷ lệ hoàn thành và tỷ lệ hủy.                         |
 
+Bước 14: Truy suất nguồn gốc yếu câu (đây là quá trình giúp mình làm từ bước nào cho tới bước nào) tạo ma trận truy suất yêu cầu(RTM) sẽ có cột BG, BR, FR,UC,AC,TC
+| BG                                      | BR                                    | FR                                | UC                           | AC                                        | TC                                 |
+| --------------------------------------- | ------------------------------------- | --------------------------------- | ---------------------------- | ----------------------------------------- | ---------------------------------- |
+| **BG01** Nâng cao hiệu quả đặt xe       | **BR01** Đặt chuyến                   | FR01 Nhập điểm đón                | UC02 Đặt chuyến              | AC02 Đủ thông tin đặt chuyến → tạo chuyến | TC01 Kiểm tra đặt chuyến hợp lệ    |
+|                                         |                                       | FR02 Nhập điểm đến                | UC02                         | AC02                                      | TC02 Kiểm tra điểm đến             |
+|                                         |                                       | FR03 Chọn loại xe                 | UC02                         | AC02                                      | TC03 Kiểm tra chọn loại xe         |
+|                                         |                                       | FR04 Xác nhận đặt chuyến          | UC02                         | AC02                                      | TC04 Kiểm tra xác nhận đặt chuyến  |
+| **BG02** Tự động hóa việc tìm tài xế    | **BR02** Tìm và phân công tài xế      | FR05 Xác định tài xế sẵn sàng     | UC03 Tìm và phân công tài xế | AC03 Chỉ tài xế sẵn sàng được chọn        | TC05 Kiểm tra tài xế sẵn sàng      |
+|                                         |                                       | FR06 Tìm tài xế phù hợp           | UC03                         | AC03                                      | TC06 Kiểm tra tìm tài xế           |
+|                                         |                                       | FR07 Gửi yêu cầu nhận chuyến      | UC03                         | AC03                                      | TC07 Kiểm tra gửi yêu cầu          |
+|                                         |                                       | FR08 Tìm tài xế khác              | UC03                         | AC03                                      | TC08 Kiểm tra tài xế từ chối       |
+| **BG03** Quản lý và theo dõi chuyến     | **BR03** Thực hiện chuyến             | FR09 Cập nhật trạng thái          | UC05 Thực hiện chuyến        | AC05 Cập nhật đúng trạng thái             | TC09 Kiểm tra cập nhật trạng thái  |
+|                                         |                                       | FR10 Cập nhật vị trí tài xế       | UC04 Theo dõi chuyến         | AC04 Hiển thị vị trí tài xế               | TC10 Kiểm tra vị trí               |
+|                                         |                                       | FR11 Hoàn thành chuyến            | UC05                         | AC05 Chuyến được hoàn thành               | TC11 Kiểm tra hoàn thành chuyến    |
+| **BG04** Hỗ trợ thanh toán              | **BR04** Tính cước và thanh toán      | FR12 Tính cước                    | UC06 Thanh toán              | AC06 Hiển thị đúng số tiền                | TC12 Kiểm tra tính cước            |
+|                                         |                                       | FR13 Chọn phương thức thanh toán  | UC06                         | AC06 Cho phép chọn phương thức            | TC13 Kiểm tra phương thức          |
+|                                         |                                       | FR14 Xác nhận kết quả thanh toán  | UC06                         | AC06 Cập nhật kết quả                     | TC14 Kiểm tra thanh toán           |
+| **BG05** Cải thiện thông tin người dùng | **BR05** Quản lý thông báo            | FR15 Thông báo trạng thái chuyến  | UC04 Theo dõi chuyến         | AC04 Hiển thị trạng thái                  | TC15 Kiểm tra thông báo chuyến     |
+|                                         |                                       | FR16 Thông báo thanh toán         | UC06 Thanh toán              | AC06 Thông báo kết quả                    | TC16 Kiểm tra thông báo thanh toán |
+| **BG06** Nâng cao chất lượng dịch vụ    | **BR06** Đánh giá tài xế              | FR17 Đánh giá tài xế              | UC07 Đánh giá tài xế         | AC07 Chỉ đánh giá chuyến hoàn thành       | TC17 Kiểm tra đánh giá             |
+| **BG07** Quản lý người dùng             | **BR07** Quản lý khách hàng và tài xế | FR18 Quản lý khách hàng           | UC08 Quản lý khách hàng      | AC08 Nhân viên có quyền cập nhật          | TC18 Kiểm tra quản lý khách hàng   |
+|                                         |                                       | FR19 Quản lý tài xế               | UC09 Quản lý tài xế          | AC09 Nhân viên có quyền cập nhật          | TC19 Kiểm tra quản lý tài xế       |
+|                                         |                                       | FR20 Quản lý trạng thái tài xế    | UC09                         | AC09 Cập nhật được trạng thái             | TC20 Kiểm tra trạng thái tài xế    |
+| **BG08** Quản lý hoạt động doanh nghiệp | **BR08** Quản lý vận hành và báo cáo  | FR21 Theo dõi chuyến đang diễn ra | UC10 Quản lý vận hành        | AC10 Xem được chuyến đang diễn ra         | TC21 Kiểm tra theo dõi chuyến      |
+|                                         |                                       | FR22 Xử lý chuyến bị lỗi          | UC10                         | AC10 Xử lý được sự cố                     | TC22 Kiểm tra xử lý sự cố          |
+|                                         |                                       | FR23 Xem báo cáo                  | UC11 Xem báo cáo             | AC11 Hiển thị báo cáo                     | TC23 Kiểm tra báo cáo              |
+
 
 
 
