@@ -184,6 +184,8 @@ vd: khách hàng đặt chuyến: tạo chuyến đi, điểm đón, điểm đ�
 | **BP10** | **Vận hành và xử lý sự cố**         | Nhân viên vận hành theo dõi các chuyến đang diễn ra → phát hiện chuyến có vấn đề → kiểm tra thông tin → xử lý hoặc hỗ trợ tài xế/khách hàng → cập nhật kết quả.                    |
 | **BP11** | **Quản lý tài khoản và phân quyền** | Quản trị viên tạo/quản lý tài khoản nhân viên → phân quyền theo vai trò → hệ thống kiểm tra quyền trước khi cho phép thực hiện chức năng.                                          |
 | **BP12** | **Báo cáo và thống kê**             | Hệ thống tổng hợp dữ liệu chuyến đi, doanh thu, hủy chuyến và hiệu quả tài xế → tạo báo cáo → ban quản lý tra cứu và theo dõi.                                                     |
+
+
 Bước 7: Phân rã yêu cầu nghiệp vụ FR
 vd: Pr01 tìm tài xế ... phân rã FR01 xác định vị trí khách hàng FR2 chọn tài xế online FR3 chọn loại xe FR4: chọn những tài xế có đánh giá cao nếu k có khỏi đưa
 | BR       | Tên BR                       | Mã FR    | Yêu cầu chức năng                    |
