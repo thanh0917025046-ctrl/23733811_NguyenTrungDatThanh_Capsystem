@@ -307,6 +307,7 @@ CHUYEN_DI ||--|| THANH_TOAN: 1 chuyến có 1 thanh toán
 CHUYEN_DI ||--o| DANH_GIA: 1 chuyến có thể có 1 đánh giá
 KHACH_HANG/TAI_XE ||--o{ THONG_BAO: mỗi người có thể nhận nhiều thông báo.
 
+```mermaid
 erDiagram
     KHACH_HANG ||--o{ CHUYEN_DI : dat
     TAI_XE ||--o{ CHUYEN_DI : thuc_hien
@@ -387,6 +388,7 @@ erDiagram
         int MaKH FK
         int MaTX FK
     }
+'''
  Bước 10: xác định các chức năng không yêu cầu
  vd: hệ thông trong giai đoạn mvp không quan tronhj thời gian phản hồi
  | STT | Chức năng không yêu cầu                              | Giải thích                                                                                          |
