@@ -427,6 +427,7 @@ UC06 Thanh toán <<include>> Tính cước
 UC07 Đánh giá tài xế <<extend>> UC05 Thực hiện chuyến
 Khi tài xế từ chối/không phản hồi → UC03 thực hiện lại việc tìm tài xế khác.
 **Sơ đồ UC**
+```mermaid
 flowchart LR
     KH([Khách hàng])
     TX([Tài xế])
@@ -466,7 +467,7 @@ flowchart LR
     UC02 -.->|include| UC03
     UC05 -.->|include| UC04
     UC07 -.->|extend| UC05
-
+```
 Bước 12 : Đặc tả UC
 **UC01** Đăng ký/Đăng nhập
 **UC02** Đặt chuyến
