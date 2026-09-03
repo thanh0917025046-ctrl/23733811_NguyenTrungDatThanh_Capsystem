@@ -1,1 +1,44 @@
+version: '3.8'
 
+services:
+  # 1. Dịch vụ Cơ sở dữ liệu MySQL (Dựa theo mô hình ERD của dự án)
+  mysql_db:
+    image: mysql:8.0
+    container_name: cab_mysql_container
+    restart: always
+    environment:
+      MYSQL_ROOT_PASSWORD: rootpassword123
+      MYSQL_DATABASE: cab_system_db
+      MYSQL_USER: cab_user
+      MYSQL_PASSWORD: cab_password123
+    ports:
+      - "3306:3306"
+    volumes:
+      - mysql_data:/var/lib/mysql
+    networks:
+      - cab_network
+
+  # 2. Dịch vụ Backend API (Node.js / Express)
+  backend_api:
+    build: .
+    container_name: cab_backend_container
+    restart: always
+    ports:
+      - "3000:3000"
+    environment:
+      - DB_HOST=mysql_db
+      - DB_USER=cab_user
+      - DB_PASSWORD=cab_password123
+      - DB_NAME=cab_system_db
+      - PORT=3000
+    depends_on:
+      - mysql_db
+    networks:
+      - cab_network
+
+volumes:
+  mysql_data:
+
+networks:
+  cab_network:
+    driver: bridge
