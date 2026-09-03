@@ -1,4 +1,4 @@
-Bước 1: Đọc và phân tích sơ khởi của khách hàng: hiểu đc ngữ cảnh của nghiệp vụ ,xác định vấn đề nghiệp vụ(Khách hàng gặp vấn đề gì , tại sao lại chọn lựa hệ thống mới, ai là người)
+ Bước 1: Đọc và phân tích sơ khởi của khách hàng: hiểu đc ngữ cảnh của nghiệp vụ ,xác định vấn đề nghiệp vụ(Khách hàng gặp vấn đề gì , tại sao lại chọn lựa hệ thống mới, ai là người)
 ## Bước 1: Đọc và phân tích sơ khởi yêu cầu của khách hàng
 
 1. Hiểu ngữ cảnh nghiệp vụ
@@ -68,8 +68,7 @@ tầm ảnh hưởng vai trò
 | 7   | **Nhà cung cấp thông báo**      | Cung cấp các kênh gửi thông báo cho khách hàng và tài xế                     | 
 | 8   | **Đội phát triển hệ thống**     | Thiết kế, xây dựng, kiểm thử và triển khai hệ thống                          |
 
-https://mermaidchart.cello.so/Pc5aeqVy89o
-
+```mermaid
 graph TD
     subgraph BanLanhDao [Ban Lanh dao / Ban Giam doc]
         A1[Ban Giam doc Cong ty ABC]
@@ -103,6 +102,7 @@ graph TD
 
     D1 -->|Lam ro yeu cau nghiep vu TBD| A1
     D1 -->|Cung cap dac ta tai lieu SRS| D2
+```
 Bước 3: Mục đích của nhiệm vụ (BG01, BG02..)
 | Mã       | Mục đích nhiệm vụ                            | Nội dung                                                                                                          |
 | -------- | -------------------------------------------- | ----------------------------------------------------------------------------------------------------------------- |
