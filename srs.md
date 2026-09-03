@@ -388,7 +388,7 @@ erDiagram
         int MaKH FK
         int MaTX FK
     }
-'''
+```
  Bước 10: xác định các chức năng không yêu cầu
  vd: hệ thông trong giai đoạn mvp không quan tronhj thời gian phản hồi
  | STT | Chức năng không yêu cầu                              | Giải thích                                                                                          |
