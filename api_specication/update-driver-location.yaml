@@ -1,0 +1,23 @@
+openapi: 3.0.3
+info:
+  title: CAB System - FR10
+  version: 1.0.0
+  description: API cho FR10 - Cập nhật vị trí tài xế
+servers:
+  - url: https://api.cabsystem.com/v1
+paths:
+  /driver/location:
+    post:
+      summary: FR10 - Gửi tọa độ GPS của tài xế lên hệ thống
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                lat: { type: number }
+                lng: { type: number }
+      responses:
+        '200':
+          description: Đã lưu vị trí mới nhất của tài xế
