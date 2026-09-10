@@ -145,9 +145,12 @@ vd: quản lí khách hàng, quản lí tài xế ... modul cơ bản dưới d�
 Những nội dung không cần xây dựng trong giai đoạn này:
 
 ❌ Tự xây dựng cổng thanh toán điện tử → chỉ tích hợp nhà cung cấp bên ngoài.
+
 ❌ Tự xây dựng hệ thống SMS/Email/Push Notification → chỉ tích hợp dịch vụ thông báo bên ngoài.
+
 ❌ Phát triển bản đồ/GPS riêng → chỉ sử dụng dịch vụ bản đồ/vị trí bên ngoài nếu cần.
 ❌ Quản lý bảo dưỡng, sửa chữa phương tiện.
+
 ❌ Quản lý lương, thưởng và chấm công tài xế.
 ❌ Quản lý kế toán, thuế và tài chính doanh nghiệp chuyên sâu.
 ❌ Xây dựng dịch vụ giao đồ ăn/giao hàng hoặc các dịch vụ khác ngoài đặt xe.
