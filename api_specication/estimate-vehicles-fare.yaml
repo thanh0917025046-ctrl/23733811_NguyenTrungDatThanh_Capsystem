@@ -1,0 +1,25 @@
+openapi: 3.0.3
+info:
+  title: CAB System - FR03
+  version: 1.0.0
+  description: API cho FR03 - Lấy danh sách loại xe và tính cước
+servers:
+  - url: https://api.cabsystem.com/v1
+paths:
+  /bookings/vehicles:
+    post:
+      summary: FR03 - Chọn loại xe và tính cước
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                pickupLat: { type: number }
+                pickupLng: { type: number }
+                dropoffLat: { type: number }
+                dropoffLng: { type: number }
+      responses:
+        '200':
+          description: Trả về danh sách loại xe và cước phí
