@@ -1,0 +1,23 @@
+openapi: 3.0.3
+info:
+  title: CAB System - FR07
+  version: 1.0.0
+  description: API cho FR07 - Gửi yêu cầu nhận chuyến cho tài xế
+servers:
+  - url: https://api.cabsystem.com/v1
+paths:
+  /dispatch/requests/send:
+    post:
+      summary: FR07 - Gửi thông tin chuyến đi đến màn hình của tài xế
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                driverId: { type: string }
+                tripId: { type: string }
+      responses:
+        '200':
+          description: Đã gửi yêu cầu đến tài xế thành công
