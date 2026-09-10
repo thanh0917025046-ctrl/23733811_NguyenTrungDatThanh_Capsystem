@@ -1,0 +1,31 @@
+openapi: 3.0.3
+info:
+  title: CAB System - FR22
+  version: 1.0.0
+  description: API cho FR22 - Xử lý chuyến bị lỗi
+servers:
+  - url: https://api.cabsystem.com/v1
+paths:
+  /admin/trips/{tripId}/resolve:
+    post:
+      summary: FR22 - Xử lý chuyến bị lỗi
+      parameters:
+        - name: tripId
+          in: path
+          required: true
+          schema:
+            type: string
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                resolutionNote: 
+                  type: string
+                forceStatus: 
+                  type: string
+      responses:
+        '200':
+          description: Đã ghi nhận và xử lý sự cố cho chuyến đi
