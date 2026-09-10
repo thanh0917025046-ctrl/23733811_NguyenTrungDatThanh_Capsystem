@@ -1,0 +1,253 @@
+openapi: 3.0.3
+info:
+  title: CAB System API - Booking Services
+  version: 1.0.0
+  description: Đặc tả API cho phân hệ Đặt chuyến xe dựa trên các FR và AC.
+servers:
+  - url: https://api.cabsystem.com/v1
+    description: Production Server
+
+tags:
+  - name: Booking
+    description: Các API liên quan đến quy trình đặt chuyến của khách hàng (FR01 - FR04)
+
+paths:
+  # ==========================================
+  # FR01 & FR02: NHẬP ĐIỂM ĐÓN / ĐIỂM ĐẾN
+  # ==========================================
+  /locations/autocomplete:
+    get:
+      tags:
+        - Booking
+      summary: "[FR01, FR02] Gợi ý và tìm kiếm địa chỉ"
+      description: |
+        Hỗ trợ khách hàng nhập điểm đón (FR01) và điểm đến (FR02).
+        Áp dụng AC02/TC01/TC02: Hệ thống phải kiểm tra và trả về tọa độ địa chỉ hợp lệ.
+      parameters:
+        - name: query
+          in: query
+          required: true
+          description: Từ khóa tìm kiếm địa điểm khách hàng nhập vào.
+          schema:
+            type: string
+            example: "12 Nguyễn Văn Bảo"
+        - name: lat
+          in: query
+          required: false
+          description: Vĩ độ hiện tại của khách hàng để ưu tiên kết quả gần.
+          schema:
+            type: number
+            format: float
+        - name: lng
+          in: query
+          required: false
+          description: Kinh độ hiện tại của khách hàng.
+          schema:
+            type: number
+            format: float
+      responses:
+        '200':
+          description: Trả về danh sách địa điểm gợi ý kèm tọa độ.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/LocationListResponse'
+        '400':
+          description: Lỗi tham số đầu vào.
+
+  # ==========================================
+  # FR03 & FR12: CHỌN LOẠI XE VÀ TÍNH CƯỚC DỰ KIẾN
+  # ==========================================
+  /bookings/estimate:
+    post:
+      tags:
+        - Booking
+      summary: "[FR03, FR12] Lấy danh sách loại xe và cước phí dự kiến"
+      description: |
+        Sau khi có điểm đón và điểm đến, lấy danh sách loại xe khả dụng (FR03) 
+        và tính toán cước phí dự kiến trước khi đặt (FR12).
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/EstimateRequest'
+      responses:
+        '200':
+          description: Danh sách các loại xe và giá tiền dự kiến.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/EstimateResponse'
+        '400':
+          description: Tọa độ không hợp lệ hoặc khoảng cách quá xa (TC03).
+
+  # ==========================================
+  # FR04: XÁC NHẬN ĐẶT CHUYẾN
+  # ==========================================
+  /bookings:
+    post:
+      tags:
+        - Booking
+      summary: "[FR04] Xác nhận đặt chuyến xe"
+      description: |
+        Khách hàng gửi yêu cầu tạo chuyến xe. 
+        Thỏa mãn AC02: "Khách hàng nhập đầy đủ điểm đón, điểm đến, loại xe và xác nhận thì hệ thống tạo chuyến thành công."
+      security:
+        - bearerAuth: []
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/BookingCreateRequest'
+      responses:
+        '201':
+          description: Tạo chuyến thành công, bắt đầu tìm tài xế (Chuyển sang FR05).
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/BookingCreateResponse'
+        '400':
+          description: Thiếu thông tin bắt buộc (Điểm đón, điểm đến, loại xe) - Ràng buộc AC02.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+
+components:
+  securitySchemes:
+    bearerAuth:
+      type: http
+      scheme: bearer
+      bearerFormat: JWT
+
+  schemas:
+    # --- Models cho FR01, FR02 ---
+    LocationListResponse:
+      type: object
+      properties:
+        success:
+          type: boolean
+          example: true
+        data:
+          type: array
+          items:
+            type: object
+            properties:
+              address:
+                type: string
+                example: "Trường Đại học Công nghiệp, 12 Nguyễn Văn Bảo, Phường 4, Gò Vấp"
+              lat:
+                type: number
+                format: float
+                example: 10.822158
+              lng:
+                type: number
+                format: float
+                example: 106.686824
+
+    # --- Models cho FR03 ---
+    EstimateRequest:
+      type: object
+      required:
+        - pickupLat
+        - pickupLng
+        - dropoffLat
+        - dropoffLng
+      properties:
+        pickupLat:
+          type: number
+        pickupLng:
+          type: number
+        dropoffLat:
+          type: number
+        dropoffLng:
+          type: number
+
+    EstimateResponse:
+      type: object
+      properties:
+        success:
+          type: boolean
+          example: true
+        distanceKm:
+          type: number
+          example: 5.2
+        vehicles:
+          type: array
+          items:
+            type: object
+            properties:
+              vehicleTypeId:
+                type: integer
+                example: 1
+              vehicleName:
+                type: string
+                example: "CAB 4 Chỗ"
+              estimatedPrice:
+                type: number
+                example: 65000
+
+    # --- Models cho FR04 ---
+    BookingCreateRequest:
+      type: object
+      required:
+        - pickupAddress
+        - pickupLat
+        - pickupLng
+        - dropoffAddress
+        - dropoffLat
+        - dropoffLng
+        - vehicleTypeId
+      properties:
+        pickupAddress:
+          type: string
+          description: "FR01: Tên địa chỉ điểm đón"
+        pickupLat:
+          type: number
+        pickupLng:
+          type: number
+        dropoffAddress:
+          type: string
+          description: "FR02: Tên địa chỉ điểm đến"
+        dropoffLat:
+          type: number
+        dropoffLng:
+          type: number
+        vehicleTypeId:
+          type: integer
+          description: "FR03: ID của loại xe đã chọn"
+        paymentMethod:
+          type: string
+          enum: [CASH, CREDIT_CARD, E_WALLET]
+          description: "Phương thức thanh toán dự kiến"
+
+    BookingCreateResponse:
+      type: object
+      properties:
+        success:
+          type: boolean
+          example: true
+        message:
+          type: string
+          example: "Tạo chuyến đi thành công. Đang tìm tài xế (FR05)."
+        bookingId:
+          type: string
+          example: "BKG-987654321"
+        status:
+          type: string
+          example: "SEARCHING_DRIVER"
+
+    ErrorResponse:
+      type: object
+      properties:
+        success:
+          type: boolean
+          example: false
+        errorCode:
+          type: string
+          example: "VALIDATION_ERROR"
+        message:
+          type: string
+          example: "Thiếu thông tin điểm đón hoặc điểm đến."
