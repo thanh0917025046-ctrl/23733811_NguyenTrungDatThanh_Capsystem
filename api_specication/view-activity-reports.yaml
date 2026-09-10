@@ -1,0 +1,27 @@
+openapi: 3.0.3
+info:
+  title: CAB System - FR23
+  version: 1.0.0
+  description: API cho FR23 - Xem báo cáo hoạt động
+servers:
+  - url: https://api.cabsystem.com/v1
+paths:
+  /admin/reports:
+    get:
+      summary: FR23 - Xem báo cáo hoạt động
+      parameters:
+        - name: startDate
+          in: query
+          required: false
+          schema:
+            type: string
+            format: date
+        - name: endDate
+          in: query
+          required: false
+          schema:
+            type: string
+            format: date
+      responses:
+        '200':
+          description: Trả về dữ liệu thống kê doanh thu và số lượng chuyến đi
