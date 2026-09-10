@@ -1,0 +1,20 @@
+openapi: 3.0.3
+info:
+  title: CAB System - FR16
+  version: 1.0.0
+  description: API cho FR16 - Thông báo kết quả thanh toán
+servers:
+  - url: https://api.cabsystem.com/v1
+paths:
+  /users/{userId}/notifications/payments:
+    get:
+      summary: FR16 - Lấy danh sách thông báo về kết quả thanh toán
+      parameters:
+        - name: userId
+          in: path
+          required: true
+          schema:
+            type: string
+      responses:
+        '200':
+          description: Trả về các thông báo thanh toán
