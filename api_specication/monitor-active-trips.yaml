@@ -1,0 +1,14 @@
+openapi: 3.0.3
+info:
+  title: CAB System - FR21
+  version: 1.0.0
+  description: API cho FR21 - Theo dõi chuyến đang diễn ra
+servers:
+  - url: https://api.cabsystem.com/v1
+paths:
+  /admin/trips/active:
+    get:
+      summary: FR21 - Theo dõi chuyến đang diễn ra
+      responses:
+        '200':
+          description: Trả về danh sách các chuyến đi đang hoạt động trong thời gian thực
