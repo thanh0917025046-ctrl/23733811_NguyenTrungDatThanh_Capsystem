@@ -1,0 +1,29 @@
+openapi: 3.0.3
+info:
+  title: CAB System - FR19
+  version: 1.0.0
+  description: API cho FR19 - Quản lý thông tin tài xế
+servers:
+  - url: https://api.cabsystem.com/v1
+paths:
+  /drivers/{driverId}:
+    put:
+      summary: FR19 - Cập nhật hồ sơ tài xế
+      parameters:
+        - name: driverId
+          in: path
+          required: true
+          schema:
+            type: string
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                name: { type: string }
+                licensePlate: { type: string }
+      responses:
+        '200':
+          description: Thông tin tài xế đã được cập nhật
