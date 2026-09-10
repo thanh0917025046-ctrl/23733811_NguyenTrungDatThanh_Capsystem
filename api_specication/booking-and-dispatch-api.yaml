@@ -1,0 +1,208 @@
+openapi: 3.0.3
+info:
+  title: CAB System API - Booking & Dispatch Services
+  version: 1.0.1
+  description: Đặc tả API cho phân hệ Đặt chuyến và Điều phối, bắt đầu từ yêu cầu FR02.
+
+servers:
+  - url: https://api.cabsystem.com/v1
+
+tags:
+  - name: Booking
+    description: API cho quá trình đặt xe của khách hàng.
+  - name: Dispatch
+    description: API cho quá trình điều phối tài xế.
+
+paths:
+  # ==========================================
+  # FR02: NHẬP ĐIỂM ĐẾN
+  # ==========================================
+  /locations/destination/search:
+    get:
+      tags:
+        - Booking
+      summary: FR02 - Tìm kiếm và gợi ý điểm đến
+      description: |
+        Hỗ trợ khách hàng nhập và tìm kiếm tọa độ điểm đến.
+      parameters:
+        - name: query
+          in: query
+          required: true
+          description: Từ khóa địa chỉ điểm đến khách hàng nhập vào.
+          schema:
+            type: string
+            example: "Sân bay Tân Sơn Nhất"
+      responses:
+        '200':
+          description: Trả về danh sách địa điểm gợi ý làm điểm đến.
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/LocationResult'
+
+  # ==========================================
+  # FR03 & FR12: CHỌN LOẠI XE VÀ TÍNH CƯỚC
+  # ==========================================
+  /bookings/estimate:
+    post:
+      tags:
+        - Booking
+      summary: FR03 và FR12 - Chọn loại xe và ước tính cước phí
+      description: |
+        Sau khi nhập điểm đến, lấy danh sách loại xe và tính cước chuyến đi dự kiến.
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/EstimateRequest'
+      responses:
+        '200':
+          description: Danh sách xe khả dụng và giá tiền ước tính.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/EstimateResponse'
+
+  # ==========================================
+  # FR04: XÁC NHẬN ĐẶT CHUYẾN
+  # ==========================================
+  /bookings:
+    post:
+      tags:
+        - Booking
+      summary: FR04 - Xác nhận đặt chuyến
+      description: |
+        Thỏa mãn AC02 - Khách hàng xác nhận tạo chuyến thành công sau khi nhập đủ thông tin.
+      security:
+        - bearerAuth: []
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/BookingRequest'
+      responses:
+        '201':
+          description: Tạo chuyến thành công.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/BookingResponse'
+        '400':
+          description: Thiếu thông tin bắt buộc (Ràng buộc AC02).
+
+  # ==========================================
+  # FR05, FR06, FR07, FR08: TÌM VÀ PHÂN CÔNG TÀI XẾ
+  # ==========================================
+  /dispatch/find-driver:
+    post:
+      tags:
+        - Dispatch
+      summary: FR05 đến FR08 - Tìm và phân công tài xế
+      description: |
+        Xác định tài xế sẵn sàng (FR05), tìm người phù hợp (FR06), gửi yêu cầu (FR07). 
+        Thỏa mãn AC03 - Tự động đổi tài xế nếu từ chối hoặc không phản hồi (FR08).
+      security:
+        - bearerAuth: []
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              required: [tripId]
+              properties:
+                tripId:
+                  type: string
+                  example: "TRIP98765"
+      responses:
+        '200':
+          description: Đã gửi yêu cầu cho tài xế phù hợp.
+        '408':
+          description: Tài xế từ chối, đang gọi vòng lặp tìm tài xế khác (FR08).
+
+components:
+  securitySchemes:
+    bearerAuth:
+      type: http
+      scheme: bearer
+      bearerFormat: JWT
+
+  schemas:
+    LocationResult:
+      type: object
+      properties:
+        address:
+          type: string
+          example: "Sân bay Tân Sơn Nhất, Trường Sơn, Tân Bình"
+        lat:
+          type: number
+          format: float
+          example: 10.818463
+        lng:
+          type: number
+          format: float
+          example: 106.658824
+
+    EstimateRequest:
+      type: object
+      required: [pickupLat, pickupLng, dropoffLat, dropoffLng]
+      properties:
+        pickupLat:
+          type: number
+        pickupLng:
+          type: number
+        dropoffLat:
+          type: number
+        dropoffLng:
+          type: number
+
+    EstimateResponse:
+      type: object
+      properties:
+        options:
+          type: array
+          items:
+            type: object
+            properties:
+              vehicleTypeId:
+                type: integer
+                example: 1
+              name:
+                type: string
+                example: "CAB 4 Chỗ"
+              price:
+                type: number
+                example: 85000
+
+    BookingRequest:
+      type: object
+      required: [pickupLat, pickupLng, dropoffLat, dropoffLng, vehicleTypeId]
+      properties:
+        pickupLat:
+          type: number
+        pickupLng:
+          type: number
+        dropoffLat:
+          type: number
+        dropoffLng:
+          type: number
+        vehicleTypeId:
+          type: integer
+          example: 1
+
+    BookingResponse:
+      type: object
+      properties:
+        success:
+          type: boolean
+          example: true
+        tripId:
+          type: string
+          example: "TRIP98765"
+        status:
+          type: string
+          example: "SEARCHING_DRIVER"
