@@ -1,0 +1,30 @@
+openapi: 3.0.3
+info:
+  title: CAB System - FR09
+  version: 1.0.0
+  description: API cho FR09 - Cập nhật trạng thái chuyến đi
+servers:
+  - url: https://api.cabsystem.com/v1
+paths:
+  /trips/{tripId}/status:
+    patch:
+      summary: FR09 - Tài xế cập nhật trạng thái chuyến đi
+      parameters:
+        - name: tripId
+          in: path
+          required: true
+          schema:
+            type: string
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                status: 
+                  type: string
+                  enum: [ARRIVED, PICKED_UP, MOVING]
+      responses:
+        '200':
+          description: Đổi trạng thái chuyến thành công
