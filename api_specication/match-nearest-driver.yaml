@@ -1,0 +1,24 @@
+openapi: 3.0.3
+info:
+  title: CAB System - FR06
+  version: 1.0.0
+  description: API cho FR06 - Tìm tài xế phù hợp và gần khách hàng
+servers:
+  - url: https://api.cabsystem.com/v1
+paths:
+  /dispatch/drivers/nearest:
+    post:
+      summary: FR06 - Tìm tài xế phù hợp nhất dựa trên tọa độ
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                tripId: { type: string }
+                pickupLat: { type: number }
+                pickupLng: { type: number }
+      responses:
+        '200':
+          description: Trả về thông tin tài xế phù hợp nhất
