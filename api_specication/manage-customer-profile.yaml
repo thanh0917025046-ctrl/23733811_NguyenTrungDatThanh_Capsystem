@@ -1,0 +1,29 @@
+openapi: 3.0.3
+info:
+  title: CAB System - FR18
+  version: 1.0.0
+  description: API cho FR18 - Quản lý thông tin khách hàng
+servers:
+  - url: https://api.cabsystem.com/v1
+paths:
+  /customers/{customerId}:
+    put:
+      summary: FR18 - Cập nhật hồ sơ khách hàng
+      parameters:
+        - name: customerId
+          in: path
+          required: true
+          schema:
+            type: string
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                name: { type: string }
+                phone: { type: string }
+      responses:
+        '200':
+          description: Thông tin khách hàng đã được cập nhật
