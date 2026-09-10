@@ -1,0 +1,20 @@
+openapi: 3.0.3
+info:
+  title: CAB System - FR01
+  version: 1.0.0
+  description: API cho FR01 - Tìm kiếm và gợi ý điểm đón
+servers:
+  - url: https://api.cabsystem.com/v1
+paths:
+  /locations/pickup/search:
+    get:
+      summary: FR01 - Tìm kiếm điểm đón
+      parameters:
+        - name: query
+          in: query
+          required: true
+          schema: 
+            type: string
+      responses:
+        '200':
+          description: Trả về danh sách địa chỉ gợi ý
