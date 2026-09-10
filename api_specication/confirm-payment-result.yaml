@@ -1,0 +1,29 @@
+openapi: 3.0.3
+info:
+  title: CAB System - FR14
+  version: 1.0.0
+  description: API cho FR14 - Xác nhận kết quả thanh toán
+servers:
+  - url: https://api.cabsystem.com/v1
+paths:
+  /trips/{tripId}/payment/confirm:
+    post:
+      summary: FR14 - Nhận và xác nhận kết quả thanh toán
+      parameters:
+        - name: tripId
+          in: path
+          required: true
+          schema:
+            type: string
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                transactionId: { type: string }
+                status: { type: string }
+      responses:
+        '200':
+          description: Xác nhận thanh toán thành công
