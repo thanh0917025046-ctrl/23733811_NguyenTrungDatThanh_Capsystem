@@ -1,0 +1,20 @@
+openapi: 3.0.3
+info:
+  title: CAB System - FR11
+  version: 1.0.0
+  description: API cho FR11 - Hoàn thành chuyến đi
+servers:
+  - url: https://api.cabsystem.com/v1
+paths:
+  /trips/{tripId}/complete:
+    post:
+      summary: FR11 - Xác nhận hoàn thành chuyến đi
+      parameters:
+        - name: tripId
+          in: path
+          required: true
+          schema:
+            type: string
+      responses:
+        '200':
+          description: Chuyến đi đã được đánh dấu hoàn thành
