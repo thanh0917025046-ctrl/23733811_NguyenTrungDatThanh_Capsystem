@@ -1,0 +1,30 @@
+openapi: 3.0.3
+info:
+  title: CAB System - FR13
+  version: 1.0.0
+  description: API cho FR13 - Chọn phương thức thanh toán
+servers:
+  - url: https://api.cabsystem.com/v1
+paths:
+  /trips/{tripId}/payment-method:
+    put:
+      summary: FR13 - Khách hàng chọn phương thức thanh toán
+      parameters:
+        - name: tripId
+          in: path
+          required: true
+          schema:
+            type: string
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                method: 
+                  type: string
+                  enum: [CASH, E_WALLET, CREDIT_CARD]
+      responses:
+        '200':
+          description: Cập nhật phương thức thanh toán thành công
