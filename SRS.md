@@ -85,3 +85,14 @@ graph TD
     D1 -->|Lam ro yeu cau nghiep vu TBD| A1
     D1 -->|Cung cap dac ta tai lieu SRS| D2
 ```
+Mã,Mục đích nhiệm vụ,Nội dung
+BG01,Tự động hóa quy trình đặt xe,Cho phép khách hàng đặt xe trực tuyến và hệ thống tự động xử lý yêu cầu đặt xe.
+BG02,Tự động tìm và phân công tài xế,"Tìm tài xế phù hợp dựa trên vị trí, trạng thái sẵn sàng và các tiêu chí vận hành."
+BG03,Nâng cao khả năng theo dõi chuyến đi,Cho phép khách hàng và nhân viên vận hành theo dõi trạng thái chuyến và vị trí tài xế.
+BG04,Quản lý tính cước và thanh toán,Tính chính xác số tiền phải trả và hỗ trợ thanh toán tiền mặt hoặc điện tử.
+BG05,Quản lý thông báo,Cung cấp thông báo kịp thời cho khách hàng và tài xế trong quá trình đặt và thực hiện chuyến.
+BG06,Nâng cao hiệu quả vận hành,"Hỗ trợ nhân viên quản lý khách hàng, tài xế, phương tiện, chuyến đi và xử lý sự cố."
+BG07,Cung cấp báo cáo và thống kê,"Theo dõi số chuyến, doanh thu, tỷ lệ hoàn thành, tỷ lệ hủy và hiệu quả tài xế."
+BG08,Đảm bảo an toàn và bảo mật dữ liệu,"Xác thực người dùng, phân quyền quản trị, bảo vệ dữ liệu cá nhân, vị trí và giao dịch."
+BG09,Đảm bảo tính ổn định và khả năng mở rộng,Hệ thống hoạt động ổn định khi tải tăng và cho phép mở rộng từng thành phần độc lập.
+BG10,Tạo nền tảng phát triển lâu dài,"Cho phép bổ sung dịch vụ, phương thức thanh toán, kênh thông báo và thay đổi thành phần kỹ thuật trong tương lai."
