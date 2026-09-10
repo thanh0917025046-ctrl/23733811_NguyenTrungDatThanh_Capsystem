@@ -1,0 +1,20 @@
+openapi: 3.0.3
+info:
+  title: CAB System - FR02
+  version: 1.0.0
+  description: API cho FR02 - Tìm kiếm và gợi ý điểm đến
+servers:
+  - url: https://api.cabsystem.com/v1
+paths:
+  /locations/dropoff/search:
+    get:
+      summary: FR02 - Tìm kiếm điểm đến
+      parameters:
+        - name: query
+          in: query
+          required: true
+          schema: 
+            type: string
+      responses:
+        '200':
+          description: Trả về danh sách địa chỉ gợi ý
