@@ -1,0 +1,14 @@
+openapi: 3.0.3
+info:
+  title: CAB System - FR05
+  version: 1.0.0
+  description: API cho FR05 - Xác định tài xế đang sẵn sàng
+servers:
+  - url: https://api.cabsystem.com/v1
+paths:
+  /dispatch/drivers/available:
+    get:
+      summary: FR05 - Lấy danh sách tài xế đang ở trạng thái sẵn sàng
+      responses:
+        '200':
+          description: Trả về danh sách tài xế đang online và sẵn sàng nhận chuyến
