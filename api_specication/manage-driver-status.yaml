@@ -1,0 +1,30 @@
+openapi: 3.0.3
+info:
+  title: CAB System - FR20
+  version: 1.0.0
+  description: API cho FR20 - Quản lý trạng thái tài xế
+servers:
+  - url: https://api.cabsystem.com/v1
+paths:
+  /drivers/{driverId}/status:
+    patch:
+      summary: FR20 - Quản lý trạng thái tài xế
+      parameters:
+        - name: driverId
+          in: path
+          required: true
+          schema:
+            type: string
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                status:
+                  type: string
+                  enum: [READY, OFFLINE, BUSY]
+      responses:
+        '200':
+          description: Đã cập nhật trạng thái hoạt động của tài xế
