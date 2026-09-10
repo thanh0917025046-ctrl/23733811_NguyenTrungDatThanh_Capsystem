@@ -1,0 +1,20 @@
+openapi: 3.0.3
+info:
+  title: CAB System - FR12
+  version: 1.0.0
+  description: API cho FR12 - Tính cước chuyến đi
+servers:
+  - url: https://api.cabsystem.com/v1
+paths:
+  /trips/{tripId}/fare:
+    get:
+      summary: FR12 - Tính toán số tiền cước thực tế khi chuyến đi kết thúc
+      parameters:
+        - name: tripId
+          in: path
+          required: true
+          schema:
+            type: string
+      responses:
+        '200':
+          description: Trả về số tiền cước phí cuối cùng
