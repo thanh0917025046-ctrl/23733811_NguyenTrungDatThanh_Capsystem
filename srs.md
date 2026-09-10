@@ -121,20 +121,24 @@ Bước 4: xác định phạm vi yêu cầu :
 vd: quản lí khách hàng, quản lí tài xế ... modul cơ bản dưới dạng phần mềm mdp
 - Ngoài phạm vi không cần làm
   1. Phạm vi trong hệ thống
-| Mã        | Module                          | Nội dung chính                                                                              |
-| --------- | ------------------------------- | ------------------------------------------------------------------------------------------- |
-| **MDP01** | **Quản lý khách hàng**          | Đăng ký, đăng nhập, cập nhật thông tin, xem lịch sử chuyến                                  |
-| **MDP02** | **Quản lý tài xế**              | Quản lý hồ sơ, trạng thái hoạt động, vị trí và thông tin tài xế                             |
-| **MDP03** | **Quản lý phương tiện**         | Quản lý thông tin xe, loại xe và phương tiện của tài xế                                     |
-| **MDP04** | **Quản lý đặt xe**              | Nhập điểm đón/điểm đến, chọn loại xe, tạo và quản lý yêu cầu đặt xe                         |
-| **MDP05** | **Tìm kiếm & phân công tài xế** | Tìm tài xế phù hợp, ưu tiên tài xế gần và xử lý khi tài xế từ chối/không phản hồi           |
-| **MDP06** | **Quản lý chuyến đi**           | Theo dõi và cập nhật trạng thái chuyến: đến điểm đón, đón khách, đang di chuyển, hoàn thành |
-| **MDP07** | **Tính cước & thanh toán**      | Tính tiền chuyến đi, hỗ trợ tiền mặt và thanh toán điện tử thông qua nhà cung cấp bên ngoài |
-| **MDP08** | **Quản lý thông báo**           | Gửi thông báo về đặt xe, nhận chuyến, trạng thái chuyến và thanh toán                       |
-| **MDP09** | **Đánh giá chuyến đi**          | Khách hàng đánh giá tài xế sau khi hoàn thành chuyến                                        |
-| **MDP10** | **Quản lý vận hành**            | Theo dõi chuyến đang diễn ra, trạng thái tài xế và xử lý sự cố                              |
-| **MDP11** | **Quản trị & phân quyền**       | Quản lý tài khoản nhân viên, quyền truy cập và lưu vết thao tác                             |
-| **MDP12** | **Báo cáo & thống kê**          | Báo cáo số chuyến, doanh thu, tỷ lệ hoàn thành, tỷ lệ hủy và hiệu quả tài xế                |
+**Ngoài phạm vi:** Không cần làm
+
+**Phạm vi trong hệ thống:**
+
+| Mã | Module | Nội dung chính |
+| --- | --- | --- |
+| **MDP01** | Quản lý khách hàng | Đăng ký, đăng nhập, cập nhật thông tin, xem lịch sử chuyến |
+| **MDP02** | Quản lý tài xế | Quản lý hồ sơ, trạng thái hoạt động, vị trí và thông tin tài xế |
+| **MDP03** | Quản lý phương tiện | Quản lý thông tin xe, loại xe và phương tiện của tài xế |
+| **MDP04** | Quản lý đặt xe | Nhập điểm đón/điểm đến, chọn loại xe, tạo và quản lý yêu cầu đặt xe |
+| **MDP05** | Tìm kiếm & phân công tài xế | Tìm tài xế phù hợp, ưu tiên tài xế gần và xử lý khi tài xế từ chối/không phản hồi |
+| **MDP06** | Quản lý chuyến đi | Theo dõi và cập nhật trạng thái chuyến: đến điểm đón, đón khách, đang di chuyển, hoàn thành |
+| **MDP07** | Tính cước & thanh toán | Tính tiền chuyến đi, hỗ trợ tiền mặt và thanh toán điện tử thông qua nhà cung cấp bên ngoài |
+| **MDP08** | Quản lý thông báo | Gửi thông báo về đặt xe, nhận chuyến, trạng thái chuyến và thanh toán |
+| **MDP09** | Đánh giá chuyến đi | Khách hàng đánh giá tài xế sau khi hoàn thành chuyến |
+| **MDP10** | Quản lý vận hành | Theo dõi chuyến đang diễn ra, trạng thái tài xế và xử lý sự cố |
+| **MDP11** | Quản trị & phân quyền | Quản lý tài khoản nhân viên, quyền truy cập và lưu vết thao tác |
+| **MDP12** | Báo cáo & thống kê | Báo cáo số chuyến, doanh thu, tỷ lệ hoàn thành, tỷ lệ hủy và hiệu quả tài xế |
 
 2. Ngoài phạm vi dự án
 
