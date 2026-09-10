@@ -1,0 +1,23 @@
+openapi: 3.0.3
+info:
+  title: CAB System - FR08
+  version: 1.0.0
+  description: API cho FR08 - Tìm tài xế khác khi tài xế từ chối
+servers:
+  - url: https://api.cabsystem.com/v1
+paths:
+  /dispatch/requests/retry:
+    post:
+      summary: FR08 - Chuyển yêu cầu sang tài xế khác khi bị từ chối hoặc hết giờ
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                tripId: { type: string }
+                rejectedDriverId: { type: string }
+      responses:
+        '200':
+          description: Hệ thống đang điều phối lại cho tài xế khác
