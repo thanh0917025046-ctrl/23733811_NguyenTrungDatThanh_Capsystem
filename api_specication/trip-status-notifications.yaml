@@ -1,0 +1,20 @@
+openapi: 3.0.3
+info:
+  title: CAB System - FR15
+  version: 1.0.0
+  description: API cho FR15 - Thông báo trạng thái chuyến
+servers:
+  - url: https://api.cabsystem.com/v1
+paths:
+  /users/{userId}/notifications/trips:
+    get:
+      summary: FR15 - Lấy danh sách thông báo về trạng thái chuyến đi
+      parameters:
+        - name: userId
+          in: path
+          required: true
+          schema:
+            type: string
+      responses:
+        '200':
+          description: Trả về các thông báo trạng thái chuyến
